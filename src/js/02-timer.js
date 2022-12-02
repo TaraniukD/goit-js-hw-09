@@ -72,10 +72,10 @@ function updateTimer({ days, hours, minutes, seconds }) {
 }
 
 function timeToDateValue() {
-  const timeNow = flatpickrValue.selectedDates[0];
+  const desiredDateTime = flatpickrValue.selectedDates[0];
   const currentTime = new Date();
 
-    return timeValue = timeNow - currentTime;
+    return desiredDateTime - currentTime;
 };
 
 refs.btnStart.addEventListener('click', () => {
