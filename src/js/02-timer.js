@@ -19,49 +19,48 @@ const flatpickrValue = flatpickr("input#datetime-picker", {
     onClose(selectedDates) {
         getTimeError(selectedDates[0]);
   },
-}
+ }
 );
-    
+
 function getTimeError(selectedDates) {
     if (selectedDates <= new Date()) {
       return alert("Please choose a date in the future");
-      
       } else {
       refs.btnStart.removeAttribute('disabled');
-      
       }
 };
 
 const timer = {
   start() {
-    const startTime = flatpickrValue.selectedDates[0];
-
-  setInterval(() => {
-    const time = timeToDate();
-    updateTimer(time);
-}, 1000);
+    timeId = setInterval(() => {
+      const time = timeToDate();
+      
+      if (time.seconds < 0) {
+        clearInterval(timeId);
+        return;
+      } 
+      updateTimer(time);
+      }, 1000);
   },
-}
-  function pad(value) {
+};
+
+  function addLeadingZero(value) {
     return String(value).padStart(2, '0');
 }; 
 
-function timeToDate(time) {
-  const timeNow = flatpickrValue.selectedDates[0];
-  const currentTime = new Date();
+function timeToDate() {
 
-    const timeToDate =  timeNow - currentTime;
+  const timeToDate =  timeToDateValue();
     
     const second = 1000;
     const minute = second * 60;
     const hour = minute * 60;
     const day = hour * 24;
   
-    const days = pad(Math.floor(timeToDate / day));
-    const hours = pad(Math.floor((timeToDate % day) / hour));
-    const minutes = pad(Math.floor(((timeToDate % day) % hour) / minute));
-    const seconds = pad(Math.floor((((timeToDate % day) % hour) % minute) / second));
-  
+    const days = addLeadingZero(Math.floor(timeToDate / day));
+    const hours = addLeadingZero(Math.floor((timeToDate % day) / hour));
+    const minutes = addLeadingZero(Math.floor(((timeToDate % day) % hour) / minute));
+    const seconds = addLeadingZero(Math.floor((((timeToDate % day) % hour) % minute) / second));
     return { days, hours, minutes, seconds };
 };
 
@@ -72,7 +71,13 @@ function updateTimer({ days, hours, minutes, seconds }) {
   refs.seconds.textContent = seconds;
 }
 
+function timeToDateValue() {
+  const timeNow = flatpickrValue.selectedDates[0];
+  const currentTime = new Date();
+
+    return timeValue = timeNow - currentTime;
+};
+
 refs.btnStart.addEventListener('click', () => {
   timer.start()
 });
-
