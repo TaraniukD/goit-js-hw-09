@@ -11,7 +11,7 @@ refs.btnStart.addEventListener("click", () => {
   refs.btnStart.setAttribute('disabled', true);
   refs.btnStop.removeAttribute("disabled");
   
- let timeId = setInterval(() => {
+ const timeId = setInterval(() => {
     startBodyColor();
         }, 1000);
 

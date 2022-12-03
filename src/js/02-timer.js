@@ -33,7 +33,7 @@ function getTimeError(selectedDates) {
 
 const timer = {
   start() {
-   let timerId = setInterval(() => {
+   const timerId = setInterval(() => {
       const time = timeToDate();
       
       if (time.seconds < 0) {
