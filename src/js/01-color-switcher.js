@@ -34,5 +34,7 @@ function startBodyColor() {
 }
 
 
+
+// ------------- Class -------------------
 refs.btnStart.classList.add('btnStart');
 refs.btnStop.classList.add('btnStop');
