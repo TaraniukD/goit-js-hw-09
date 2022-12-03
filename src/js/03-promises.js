@@ -27,7 +27,6 @@ function onCreatePromises(e) {
   let { amount, step, delay } = inputValues;
 
   for (let i = 1; i <= amount; i += 1) {
-    delay += step;
 
   createPromise(i, delay) 
 
@@ -37,8 +36,9 @@ function onCreatePromises(e) {
   .catch(({ position, delay }) => {
     Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
   });
-    
-    formEl.reset();
+
+  delay += step;
+  formEl.reset();
   }
 };
 
