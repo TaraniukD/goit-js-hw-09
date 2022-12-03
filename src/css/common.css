@@ -21,17 +21,23 @@ input {
   min-width: 220px;
   border-radius: 3px;
   border-color: green;
+  box-shadow: 2px 2px 5px green;
 }
 button {
   padding: 3px 6px;
-  border-radius: 2px;
+color:darkgreen;
   cursor: pointer;
+  box-shadow: 2px 2px 5px #212121;
+
+font-weight: 700;
+font-size: 20px;
+
 }
 
 .timer {
   margin-top: 20px;
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 .field {
     min-width: 60px;
