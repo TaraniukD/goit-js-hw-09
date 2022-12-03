@@ -51,11 +51,39 @@ font-weight: 700;
 font-size: 25px;
 line-height: 2;
 letter-spacing: 4;
+box-shadow: 5px 5px 5px tomato;
 }
 
 .label {
+  margin-top: 20px;
   display: block;
   text-align: center;
   color: blue;
+  box-shadow: 3px 3px 5px blue;
+}
 
+.btnStart {
+margin-top: 50px;
+margin-right: 10px;
+padding: 15px 20px;
+border-radius: 8px;
+border-color: chartreuse;
+box-shadow: 5px 5px 5px chartreuse;
+
+font-weight: 700;
+font-size: 25px;
+line-height: 2;
+letter-spacing: 4;
+}
+
+.btnStop {
+  padding: 15px 20px;
+  border-radius: 8px;
+  border-color: chocolate;
+  box-shadow: 5px 5px 5px chocolate;
+
+  font-weight: 700;
+font-size: 25px;
+line-height: 2;
+letter-spacing: 4;
 }

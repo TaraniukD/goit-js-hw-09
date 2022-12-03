@@ -32,3 +32,7 @@ function getRandomHexColor() {
 function startBodyColor() {
   document.body.style.background = getRandomHexColor()
 }
+
+
+refs.btnStart.classList.add('btnStart');
+refs.btnStop.classList.add('btnStop');
