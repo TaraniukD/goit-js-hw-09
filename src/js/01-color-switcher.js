@@ -1,46 +1,34 @@
-const options = {
-    enableTime: true,
-    time_24hr: true,
-    defaultDate: new Date(),
-    minuteIncrement: 1,
-    onClose(selectedDates) {
-      onInputDate(selectedDates[0]);
-    },
-  };
-  const fp = flatpickr('#datetime-picker', options);
-  refs.buttonStartEl.setAttribute('disabled', 'disabled');
-  let timeId = null;
-  const INTERVAL = 1000;
-  /** functions */
 
-  function onInputDate(selectedDates) {
-    if (selectedDates <= Date.now()) {
-      // alert('Please choose a date in the future');
-      Notiflix.Notify.failure('Please choose a date in the future');
-    } else {
-      refs.buttonStartEl.removeAttribute('disabled', 'disabled');
-      onStartedTimer(selectedDates);
-    }
-  }
+const refs = {
+  btnStart: document.querySelector('button[data-start]'),
+  btnStop: document.querySelector('button[data-stop]'),
+};
 
+refs.btnStop.setAttribute('disabled', true);
+
+refs.btnStart.addEventListener("click", () => {
+
+  refs.btnStart.setAttribute('disabled', true);
+  refs.btnStop.removeAttribute("disabled");
   
-  function onStartedTimer(selectedDates) {
-    let timerValueInMs = Date.parse(selectedDates) - Date.now();
-    let objTimerValue = convertMs(timerValueInMs);
-    refs.buttonStartEl.addEventListener('click', () => {
-      refs.buttonStartEl.setAttribute('disabled', 'disabled');
-      refs.inputDateEl.setAttribute('disabled', 'disabled');
-      timeId = setInterval(() => {
-        if (timerValueInMs <= 0) {
-          clearInterval(timeId);
-          return;
-        }
-        objTimerValue = convertMs(timerValueInMs);
-        refs.daysEl.textContent = addLeadingZero(objTimerValue.days);
-        refs.hoursEl.textContent = addLeadingZero(objTimerValue.hours);
-        refs.minutesEl.textContent = addLeadingZero(objTimerValue.minutes);
-        refs.secondsEl.textContent = addLeadingZero(objTimerValue.seconds);
-        timerValueInMs -= INTERVAL;
-      }, INTERVAL);
-    });
-  }
+  timeId = setInterval(() => {
+    startBodyColor();
+        }, 1000);
+
+    refs.btnStop.addEventListener("click", () => {
+      clearInterval(timeId);
+      refs.btnStart.removeAttribute("disabled");;
+      refs.btnStop.setAttribute('disabled', true);
+        });
+});
+
+refs.btnStop.addEventListener('click', () => {
+})
+
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+};
+
+function startBodyColor() {
+  document.body.style.background = getRandomHexColor()
+}
